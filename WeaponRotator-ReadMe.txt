@@ -1,4 +1,4 @@
-Weapon Rotator OXP V 0.1.0
+Weapon Rotator OXP V 0.1.1
 --------------------------
 
 Purpose
@@ -65,3 +65,4 @@ Thanks to all the people having put this incredible effort into developing oolit
 Changelog
 ---------
 2013-03-05 0.1.0 first proof of concept
+2013-03-06 0.1.1 set max required version to 1.78
