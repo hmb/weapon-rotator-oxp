@@ -7,6 +7,9 @@ this.licence        = "Creative Commons Attribution-NonCommercial-ShareAlike 3.0
 this.description    = "This file implements the main functionality of weapon rotator";
 this.version        = "0.1"
 
+// --------------------------------------------
+// world script event member functions
+
 this.startUp = function()
 {
   this.rotateSound = new SoundSource;
@@ -36,7 +39,10 @@ this.playerBoughtEquipment = function(equipmentKey)
   
 }
 
-this.rotateWeapons = function(clockwise)
+// --------------------------------------------
+// world script private member functions
+
+this._rotateWeapons = function(clockwise)
 {
   // avoid double invocation
   if (this.rotating)
@@ -46,7 +52,7 @@ this.rotateWeapons = function(clockwise)
   
   // start sound and timer
   this.rotateSound.play();
-  this.rotationTimer = new Timer(this, this.finishRotation, 1.7)
+  this.rotationTimer = new Timer(this, this._finishRotation, 1.7)
   // remember data and weapons
   this.clockwise = clockwise;
   this.forwardWeapon = player.ship.forwardWeapon;
@@ -63,7 +69,7 @@ this.rotateWeapons = function(clockwise)
   player.ship.crosshairs = "weapon-rotator-xhairs.plist";
 }
 
-this.finishRotation = function()
+this._finishRotation = function()
 {
   // stop timer
   this.rotationTimer.stop();

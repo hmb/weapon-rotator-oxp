@@ -9,10 +9,10 @@ this.version        = "0.1"
 
 this.activated = function()
 {
-	worldScripts.WeaponRotatorMain.rotateWeapons(true);
+	worldScripts.WeaponRotatorMain._rotateWeapons(true);
 }
 
 this.mode = function()
 {
-	worldScripts.WeaponRotatorMain.rotateWeapons(false);
+	worldScripts.WeaponRotatorMain._rotateWeapons(false);
 }
