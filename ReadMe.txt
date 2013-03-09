@@ -49,9 +49,7 @@ https://www.box.com/s/rvayt3gstnjoj3z3yd7q
 
 License
 -------
-This OXP is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License:
-http://creativecommons.org/licenses/by-nc-sa/3.0/
-
+This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/3.0/ or send a letter to Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
 
 Development & Contact
 ---------------------
