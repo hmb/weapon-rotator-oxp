@@ -1,0 +1,39 @@
+Don't loose this sheet with the technical data of your new equipment. Read carefully and operate your equipment only within the given set of parameters. The opeating conditions will we recorded in an internal WORM (Write Once Read-only Memory). Warrenty may be void, if you exeeded this specification.
+
+This specification is about the following equipment, all contained in the Weapon Rotator OXP.
+
+- Professional Bore & Ratter Weapon Rotator (XXXX.0 Cr)
+- Bore & Ratter Weapon Rotator (XXXX.0 Cr)
+- Auto-Rotator (XXXX.0 Cr)
+- extra Rotator shielding (XXXX.0 Cr)
+
+For the concept common to both of the Rotators:
+
+I think of them as a device attached to the outside of the ship, like a turning disk, or maybe more like a rail system on which the weapons move. Of course it takes some time to move the weapons along the rail to their next position. This is accompanied by their sound of moving along. While moving the weapons, they are offline. First they have no power connection while moving, and then it would be far to dangerous to shoot into the blue, while they are moving. When they reach their final position they click in with an appropriate sound. Being attached to the outside they are also more endangered of being hit by enemy fire. That results into a higher probability of getting damaged in a fight. If they are damaged during rotation, they will get stuck and, as the weapons won't be in place, you loose all four lasers. They actually get disabled, so once your WP is repaired they will be back online. Both rotators also take a small amount of energy during action.
+
+The difference between the two rotators:
+
+The "Professional Bore & Ratter Weapon Rotator" is actually a cheap imitation from some low-tech world. The description is overly enthusiastic and full of typos. It is very error prone, makes a rattling noise while moving and takes ages to rotate (10secs). As the difference is not obvious to the player it might take it as a bargain, but after a while it'll start malfunctioning:
+
+- the noise is increasing
+- it's firing position is imprecise (thought of changing the Xhairs to be slightly out of center)
+- it takes longer to rotate
+- it gets stuck every now an then, doesn't stop rattling, has to be stopped and restarted
+- one of the rotation directions will cease to work
+- it rotates in the opposite direction, of the button pushed
+- it starts rotating without a button being pushed
+- it might in rare occasions give a screaming noise and then get stuck completely
+
+In short it does all the stuff we love in a cheap plagiarism.
+
+On the contrary the "[b]Bore & Ratter Weapon Rotator[/b]" is a very precise, highly engineered part of technology, that comes with it's price. It runs smoothly, has a pleasant sound and is very quick (2secs). It also works flawlessly, when maintained regularly within the ships normal maintenance cycles. As it's cheaper counterpart it still is fixed on the outside and has a possibility of getting disabled by laser fire. But as it's material is far superior it has no lesser damage probability as any other equipment.
+
+I do not plan to put all this information in the to not spoil the story development. But of course rumors leak through the galaxy easily, though they may be exaggerated...
+
+The [b]Auto-Rotator[/b] does what it advertises in the readme. It automatically switches to a pre-stored position when the security condition goes red. I still have to find out how to determine why it goes red. There's no need to rotate lasers, when getting to close to a planet...
+
+The [b]additional shielding[/b] will simply boost the damageProbability, of itself and the WR. (I just saw the damageProbability is read-only, I might have to re-think this, or ask for it to become writable)
+
+Additional logic will take care of the fact, that you can attach only one of the rotators at any given time. On Attachment the other WR will get removed. Probably a portion of the original price will be awarded, according to it's age and wear level.
+
+A possibility to sell the equipment might be scheduled later. Maybe we could include it in the "Sell Equipment" OXP or think up something different.
