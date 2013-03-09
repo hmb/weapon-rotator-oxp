@@ -39,6 +39,16 @@ this.playerBoughtEquipment = function(equipmentKey)
   
 }
 
+this.alertConditionChanged = function(newCondition, oldCondition)
+{
+  // condition is red and hostile activity detected
+  if (newCondition == 3 && player.alertHostiles)
+  {
+    _engageAutoRotator();
+  }
+}
+
+
 // --------------------------------------------
 // world script private member functions
 
@@ -132,3 +142,8 @@ this._finishRotation = function()
   // quit rotating
   this.rotating = false;
 };
+
+this._engageAutoRotator = function()
+{
+  _rotateWeapons(true);
+}
