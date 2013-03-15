@@ -59,14 +59,21 @@ this._rotateWeapons = function(clockwise)
   this.portWeapon = player.ship.portWeapon;
   this.aftWeapon = player.ship.aftWeapon;
   this.starboardWeapon = player.ship.starboardWeapon;
+
   // remove weapons, so no fire is possible
   player.ship.forwardWeapon = null;
   player.ship.portWeapon = null;
   player.ship.aftWeapon = null;
   player.ship.starboardWeapon = null;
-  // replace crosshairs with custom version
+
+  // replace crosshairs with custom version, depending on rotation direction
   this.crosshairs = player.ship.crosshairs;
-  player.ship.crosshairs = "weapon-rotator-xhairs.plist";
+  if (clockwise) {
+    player.ship.crosshairs = "weapon-rotator-xhairs-r.plist";
+  }
+  else {
+    player.ship.crosshairs = "weapon-rotator-xhairs-l.plist";
+  }
 }
 
 this._finishRotation = function()
