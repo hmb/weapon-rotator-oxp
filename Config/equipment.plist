@@ -2,31 +2,29 @@
 <!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <array>
-	<array>
-		<integer>7</integer>
-		<integer>16300</integer>
-		<string>Professional Bore &amp; Ratter Weapon Rotator</string>
-		<string>EQ_LB_WEAPON_ROTATOR</string>
-		<string>This is the famous Bore &amp; Ratter weapon rotator. It circles your weapons clockwise or anticlockwise through your front, aft, storeboard and port weapon mounts. You would not want to be in a combat situation without it. It helps perfectly to switch between your lasers, while mining and fighting. Comes without lasers.</string>	
-		<dict>
-			<key>available_to_all</key>
-			<true/>
-			<key>script</key>
-      <string>WeaponRotator-LowBudgetEquipment.js</string>
-		</dict>	
-	</array>
-	<array>
-		<integer>11</integer>
-		<integer>45800</integer>
-		<string>Bore &amp; Ratter Weapon Rotator</string>
-		<string>EQ_PROF_WEAPON_ROTATOR</string>
-		<string>This is the famous Bore &amp; Ratter weapon rotator. It circles your weapons clockwise or anticlockwise through your front, aft, storeboard and port weapon mounts. Be aware that you might be offered much cheaper entities of this device. Remember they may turn out to be nothing but a cheap imitation of the original product.</string>	
-		<dict>
-			<key>available_to_all</key>
-			<true/>
-			<key>script</key>
-      <string>WeaponRotator-ProfessionalEquipment.js</string>
-		</dict>	
-	</array>
+  <array>
+    <integer>7</integer>
+    <integer>38300</integer>
+    <string>Bore &amp; Ratter Weapon Rotator</string>
+    <string>EQ_LB_WEAPON_ROTATOR</string>
+    <string>This is famus Bore &amp; Ratter weapon rottator. It weapon clockweise or anticlockweise circles through your front, afft, coreboard and pord weapon mounds. You nedd in combat situation without it. It helps perfactly to stitch betwen your lasers, do ring mining and fighting coombat. Attention: Olweys use originol equibmant.</string>	
+    <dict>
+      <key>available_to_all</key>   <true/>
+      <key>script</key>             <string>WeaponRotator-LowBudgetEquipment.js</string>
+    </dict>
+  </array>
+  <array>
+    <integer>11</integer>
+    <integer>92500</integer>
+    <string>Bore &amp; Ratter Weapon Rotator</string>
+    <string>EQ_PROF_WEAPON_ROTATOR</string>
+    <string>This is the famous Bore &amp; Ratter weapon rotator. It circles your weapons clockwise or anticlockwise through your front, aft, storeboard and port weapon mounts. This high precision
+    original equipment will help you in combat situations, during mining or all other situations.
+    From now on you will always have the weapon of your choice up front</string>
+    <dict>
+      <key>available_to_all</key>     <true/>
+      <key>script</key>               <string>WeaponRotator-ProfessionalEquipment.js</string>
+    </dict>
+  </array>
 </array>
 </plist>
