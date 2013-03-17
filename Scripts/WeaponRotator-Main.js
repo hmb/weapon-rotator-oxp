@@ -12,11 +12,18 @@ this.version        = "0.2"
 
 this.startUp = function()
 {
-  // load sounds
-  this.rotateSound = new SoundSource;
-  this.rotateSound.sound = "weapon-rotator-lb-rotate.ogg";
-  this.rotateSound.loop = false;
-  this.rotating = false;
+  // init double invocation flag
+  this.rotating   = false;
+
+  this.sndStart         = new SoundSource;
+  this.sndStart.sound   = "weapon-rotator-lb-start.ogg";
+  this.sndStart.loop    = false;
+  this.sndLoop          = new SoundSource;
+  this.sndLoop.sound    = "weapon-rotator-lb-loop.ogg";
+  this.sndLoop.loop     = true;
+  this.sndFinish        = new SoundSource;
+  this.sndFinish.sound  = "weapon-rotator-lb-finish.ogg";
+  this.sndFinish.loop   = false;
 
   // init vars from saved player file
   // operationTotal is the count of total activations
@@ -94,8 +101,9 @@ this._rotateWeapons = function(clockwise)
   this.rotating = true;
 
   // start sound and timer
-  this.rotateSound.play();
-  this.rotationTimer = new Timer(this, this._finishRotation, 1.7)
+  this.sndStart.play();
+  this.rotationTimer = new Timer(this, this._startLoop, 1.75)
+
   // remember data and weapons
   this.clockwise = clockwise;
   this.forwardWeapon = player.ship.forwardWeapon;
@@ -122,11 +130,26 @@ this._rotateWeapons = function(clockwise)
   ++this.operationCount;
 }
 
+this._startLoop = function()
+{
+  // stop old timer
+  this.rotationTimer.stop();
+  delete this.rotationTimer;
+  // setup loop timer
+  this.rotationTimer = new Timer(this, this._finishRotation, 5)
+  // start looping sound
+  this.sndStart.stop();
+  this.sndLoop.play();
+}
+
 this._finishRotation = function()
 {
   // stop timer
   this.rotationTimer.stop();
   delete this.rotationTimer;
+
+  this.sndLoop.stop();
+  this.sndFinish.play();
 
   // re-fit rotated weapons
   if (this.clockwise) {
