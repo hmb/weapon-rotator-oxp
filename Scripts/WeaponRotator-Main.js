@@ -14,16 +14,15 @@ this.startUp = function()
 {
   // init double invocation flag
   this.rotating   = false;
+  this.installed  = 0;
 
-  this.sndStart         = new SoundSource;
-  this.sndStart.sound   = "weapon-rotator-lb-start.ogg";
-  this.sndStart.loop    = false;
-  this.sndLoop          = new SoundSource;
-  this.sndLoop.sound    = "weapon-rotator-lb-loop.ogg";
-  this.sndLoop.loop     = true;
-  this.sndFinish        = new SoundSource;
-  this.sndFinish.sound  = "weapon-rotator-lb-finish.ogg";
-  this.sndFinish.loop   = false;
+  // remember which eq is installed
+  if (EquipmentInfo.infoForKey("EQ_LB_WEAPON_ROTATOR")!=null) {
+    this.installed = 1;
+  }
+  else if (EquipmentInfo.infoForKey("EQ_PROF_WEAPON_ROTATOR")!=null) {
+    this.installed = 2;
+  }
 
   // init vars from saved player file
   // operationTotal is the count of total activations
@@ -37,6 +36,8 @@ this.startUp = function()
   if (this.operationCount==null) {
     this.operationCount = 0;
   }
+
+  this._init();
 }
 
 this.playerWillSaveGame = function(message)
@@ -60,20 +61,16 @@ this.playerBoughtEquipment = function(equipmentKey)
   else if (equipmentKey == "EQ_LB_WEAPON_ROTATOR") {
     // check if we have to remove the prof WR
     equipment2RemoveKey = "EQ_PROF_WEAPON_ROTATOR";
-    budgetFactor = 0.1;
+    this.installed = 1;
   }
   else if (equipmentKey == "EQ_PROF_WEAPON_ROTATOR") {
     // check if we have to remove the low budget WR
     equipment2RemoveKey = "EQ_LB_WEAPON_ROTATOR";
-    budgetFactor = 0.3;
+    this.installed = 2;
   }
 
   // remove key is not null, only in case of a WR being bought
   if (equipment2RemoveKey != null) {
-    // new device: reset usage and operation counter
-    this.operationTotal = 0;
-    this.operationCount = 0;
-
     // check for the alternate WR to be present
     var equipment2Remove = EquipmentInfo.infoForKey(equipment2RemoveKey);
     // remove it, if present
@@ -83,14 +80,49 @@ this.playerBoughtEquipment = function(equipmentKey)
       // TODO: praxis test, check if this formula is reasonable
       var countFactor = this._calcValueDiminishFactor(this.operationCount);
       var totalFactor = this._calcValueDiminishFactor(this.operationTotal);
-      totalFactor = (totalFactor-1) * budgetFactor + 1;
+      totalFactor = (totalFactor-1) * this.budgetFactor + 1;
       player.credits += equipment2Remove.price / 10.0 / countFactor / totalFactor;
     }
+
+    // new device: reset usage and operation counter
+    this.operationTotal = 0;
+    this.operationCount = 0;
+    this._init();
   }
 }
 
 // --------------------------------------------
 // world script private member functions
+
+this._init = function()
+{
+  if (this.installed == 0) {
+    this.sndStart     = null;
+    this.sndLoop      = null;
+    this.sndFinish    = null;
+    this.startLen     = 0;
+    this.loopLen      = 0;
+    this.budgetFactor = 0;
+  }
+  else {
+    var rotstr = this.installed == 1? "lb" : "hq";
+
+    // load sounds
+    this.sndStart         = new SoundSource;
+    this.sndStart.sound   = "weapon-rotator-"+rotstr+"-start.ogg";
+    this.sndStart.loop    = false;
+    this.sndLoop          = new SoundSource;
+    this.sndLoop.sound    = "weapon-rotator-"+rotstr+"-loop.ogg";
+    this.sndLoop.loop     = true;
+    this.sndFinish        = new SoundSource;
+    this.sndFinish.sound  = "weapon-rotator-"+rotstr+"-finish.ogg";
+    this.sndFinish.loop   = false;
+    // init parameters
+    this.startLen     = this.installed == 1? 1.75 : 0.15;
+    this.loopLen      = this.installed == 1? 5 : 1;
+    this.budgetFactor = this.installed == 1? 0.3 : 0.1;
+  }
+}
 
 this._rotateWeapons = function(clockwise)
 {
@@ -102,7 +134,7 @@ this._rotateWeapons = function(clockwise)
 
   // start sound and timer
   this.sndStart.play();
-  this.rotationTimer = new Timer(this, this._startLoop, 1.75)
+  this.rotationTimer = new Timer(this, this._startLoop, this.startLen)
 
   // remember data and weapons
   this.clockwise = clockwise;
@@ -136,7 +168,7 @@ this._startLoop = function()
   this.rotationTimer.stop();
   delete this.rotationTimer;
   // setup loop timer
-  this.rotationTimer = new Timer(this, this._finishRotation, 5)
+  this.rotationTimer = new Timer(this, this._finishRotation, this.loopLen)
   // start looping sound
   this.sndStart.stop();
   this.sndLoop.play();
