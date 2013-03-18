@@ -42,7 +42,6 @@ this.playerBoughtEquipment = function(equipmentKey)
 {
   // init with nothing to remove
   var equipment2RemoveKey = null;
-  var budgetFactor = 1.0;
 
   if (equipmentKey == "EQ_RENOVATION") {
     // reset operation counter, the total counter is
