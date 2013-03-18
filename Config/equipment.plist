@@ -11,6 +11,7 @@
     <dict>
       <key>available_to_all</key>     <true/>
       <key>script</key>               <string>WeaponRotator-LowBudgetEquipment.js</string>
+      <key>damage_probability</key>   <real>3.0</real>
     </dict>
   </array>
   <array>
@@ -22,6 +23,7 @@
     <dict>
       <key>available_to_all</key>     <true/>
       <key>script</key>               <string>WeaponRotator-HighQualityEquipment.js</string>
+      <key>damage_probability</key>   <real>0.75</real>
     </dict>
   </array>
 </array>
