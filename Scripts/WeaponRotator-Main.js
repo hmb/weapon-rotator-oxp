@@ -57,15 +57,17 @@ this.playerBoughtEquipment = function(equipmentKey)
     equipment2RemoveKey = "EQ_LB_WEAPON_ROTATOR";
   }
 
-  // remove key is not null, only in case of a WR being bought
+  // the remove key is != null, only in case of a new WR being bought
   if (equipment2RemoveKey != null) {
-    // check for the alternate WR to be present
-    var equipment2Remove = EquipmentInfo.infoForKey(equipment2RemoveKey);
-    // remove it, if present
-    if (equipment2Remove!=null) {
-      player.ship.removeEquipment(equipment2RemoveKey);
+    // check whether the alternative WR is present
+    if (this._isEquipmentPresent(equipment2RemoveKey)) {
+      // get the equipment info of the WR to be removed
+      var equipment2Remove = EquipmentInfo.infoForKey(equipment2RemoveKey);
+      // remove it then
+      player.ship.removeEquipment(equipment2Remove);
       // refund credits according to the operation counter
       // TODO: praxis test, check if this formula is reasonable
+      // TODO: account for damaged equipment
       var countFactor = this._calcValueDiminishFactor(this.operationCount);
       var totalFactor = this._calcValueDiminishFactor(this.operationTotal);
       totalFactor = (totalFactor-1) * this.budgetFactor + 1;
