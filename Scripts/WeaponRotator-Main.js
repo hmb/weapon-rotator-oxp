@@ -20,7 +20,7 @@ this.startUp = function()
   if (EquipmentInfo.infoForKey("EQ_LB_WEAPON_ROTATOR")!=null) {
     this.installed = 1;
   }
-  else if (EquipmentInfo.infoForKey("EQ_PROF_WEAPON_ROTATOR")!=null) {
+  else if (EquipmentInfo.infoForKey("EQ_HQ_WEAPON_ROTATOR")!=null) {
     this.installed = 2;
   }
 
@@ -59,11 +59,11 @@ this.playerBoughtEquipment = function(equipmentKey)
     this.operationCount = 0;
   }
   else if (equipmentKey == "EQ_LB_WEAPON_ROTATOR") {
-    // check if we have to remove the prof WR
-    equipment2RemoveKey = "EQ_PROF_WEAPON_ROTATOR";
+    // check if we have to remove the high quality WR
+    equipment2RemoveKey = "EQ_HQ_WEAPON_ROTATOR";
     this.installed = 1;
   }
-  else if (equipmentKey == "EQ_PROF_WEAPON_ROTATOR") {
+  else if (equipmentKey == "EQ_HQ_WEAPON_ROTATOR") {
     // check if we have to remove the low budget WR
     equipment2RemoveKey = "EQ_LB_WEAPON_ROTATOR";
     this.installed = 2;

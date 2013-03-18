@@ -2,8 +2,8 @@ Don't loose this sheet with the technical data of your new equipment. Read caref
 
 This specification is about the following equipment, all contained in the Weapon Rotator OXP.
 
-- Professional Bore & Ratter Weapon Rotator (XXXX.0 Cr)
-- Bore & Ratter Weapon Rotator (XXXX.0 Cr)
+- High Quality Bore & Ratter Weapon Rotator (XXXX.0 Cr)
+- Low Budget Bore & Ratter Weapon Rotator (XXXX.0 Cr)
 - Auto-Rotator (XXXX.0 Cr)
 - extra Rotator shielding (XXXX.0 Cr)
 
@@ -13,7 +13,7 @@ I think of them as a device attached to the outside of the ship, like a turning 
 
 The difference between the two rotators:
 
-The "Professional Bore & Ratter Weapon Rotator" is actually a cheap imitation from some low-tech world. The description is overly enthusiastic and full of typos. It is very error prone, makes a rattling noise while moving and takes ages to rotate (10secs). As the difference is not obvious to the player it might take it as a bargain, but after a while it'll start malfunctioning:
+The low budget "Bore & Ratter Weapon Rotator" is actually a cheap imitation from some low-tech world. The description is overly enthusiastic and full of typos. It is very error prone, makes a rattling noise while moving and takes ages to rotate (10secs). As the difference is not obvious to the player it might take it as a bargain, but after a while it'll start malfunctioning:
 
 - the noise is increasing
 - it's firing position is imprecise (thought of changing the Xhairs to be slightly out of center)
@@ -26,7 +26,7 @@ The "Professional Bore & Ratter Weapon Rotator" is actually a cheap imitation fr
 
 In short it does all the stuff we love in a cheap plagiarism.
 
-On the contrary the "[b]Bore & Ratter Weapon Rotator[/b]" is a very precise, highly engineered part of technology, that comes with it's price. It runs smoothly, has a pleasant sound and is very quick (2secs). It also works flawlessly, when maintained regularly within the ships normal maintenance cycles. As it's cheaper counterpart it still is fixed on the outside and has a possibility of getting disabled by laser fire. But as it's material is far superior it has no lesser damage probability as any other equipment.
+On the contrary the high quality "Bore & Ratter Weapon Rotator" is a very precise, highly engineered part of technology, that comes with it's price. It runs smoothly, has a pleasant sound and is very quick (2secs). It also works flawlessly, when maintained regularly within the ships normal maintenance cycles. As it's cheaper counterpart it still is fixed on the outside and has a possibility of getting disabled by laser fire. But as it's material is far superior it has no lesser damage probability as any other equipment.
 
 I do not plan to put all this information in the to not spoil the story development. But of course rumors leak through the galaxy easily, though they may be exaggerated...
 

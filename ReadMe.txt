@@ -19,7 +19,7 @@ You fit the weapon rotator at your ship and then you could rotate all four weapo
 
 Equipment details
 -----------------
-There are several versions spotted in the marketplace. The professional "Bore & Ratter Weapon Rotator" is quite expensive, but comes with almost all features you need. It is very precise, so you won't notice any inaccuracy when fireing. It runs quickly and smoothly and needs almost no maintenance other than within the ususal intervals. It has a certificate of authenticy attached to it and it's production facility can always be traced.
+There are several versions spotted in the marketplace. The high quality "Bore & Ratter Weapon Rotator" is quite expensive, but comes with almost all features you need. It is very precise, so you won't notice any inaccuracy when fireing. It runs quickly and smoothly and needs almost no maintenance other than within the ususal intervals. It has a certificate of authenticy attached to it and it's production facility can always be traced.
 
 Some lesser funded pilots may be tempted to buy a much cheaper "Original Bore & Ratter Weapon Rotator" product. Well, while surely the guys at B&R don't give away their stuff, think for yourself, if you're offered a device for less than half the announced factory price. While some of you may be lucky and get a real refurbished device at low costs, others will be ending up with a cheap imitation from some dubious world in the third galaxy. Nothing worse than constantly maintainig such a device, or even having it break down at crucial moments.
 
@@ -38,7 +38,7 @@ While the OXP is still in an early stage of development, the core is already wor
 - the laser temperature should stick with each weapon
 - what happens when you rotate weapons in unusual condition
   (during docking, while scooping, whilst close to the sun...)?
-- different versions of the Weapon Rotator (low-cost, professional)
+- different versions of the Weapon Rotator (low-cost, high quality)
 - shielding and Auto-Rotator still have to be implemented.
 - reasonable prices have to be discussed
 - add decent sound files
