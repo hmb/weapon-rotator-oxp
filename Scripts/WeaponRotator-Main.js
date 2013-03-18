@@ -13,16 +13,7 @@ this.version        = "0.2"
 this.startUp = function()
 {
   // init double invocation flag
-  this.rotating   = false;
-  this.installed  = 0;
-
-  // remember which eq is installed
-  if (EquipmentInfo.infoForKey("EQ_LB_WEAPON_ROTATOR")!=null) {
-    this.installed = 1;
-  }
-  else if (EquipmentInfo.infoForKey("EQ_HQ_WEAPON_ROTATOR")!=null) {
-    this.installed = 2;
-  }
+  this.rotating = false;
 
   // init vars from saved player file
   // operationTotal is the count of total activations
@@ -61,12 +52,10 @@ this.playerBoughtEquipment = function(equipmentKey)
   else if (equipmentKey == "EQ_LB_WEAPON_ROTATOR") {
     // check if we have to remove the high quality WR
     equipment2RemoveKey = "EQ_HQ_WEAPON_ROTATOR";
-    this.installed = 1;
   }
   else if (equipmentKey == "EQ_HQ_WEAPON_ROTATOR") {
     // check if we have to remove the low budget WR
     equipment2RemoveKey = "EQ_LB_WEAPON_ROTATOR";
-    this.installed = 2;
   }
 
   // remove key is not null, only in case of a WR being bought
@@ -96,31 +85,45 @@ this.playerBoughtEquipment = function(equipmentKey)
 
 this._init = function()
 {
-  if (this.installed == 0) {
+  if (this._isEquipmentPresent("EQ_LB_WEAPON_ROTATOR")) {
+    // load sounds
+    this.sndStart         = new SoundSource;
+    this.sndStart.sound   = "weapon-rotator-lb-start.ogg";
+    this.sndStart.loop    = false;
+    this.sndLoop          = new SoundSource;
+    this.sndLoop.sound    = "weapon-rotator-lb-loop.ogg";
+    this.sndLoop.loop     = true;
+    this.sndFinish        = new SoundSource;
+    this.sndFinish.sound  = "weapon-rotator-lb-finish.ogg";
+    this.sndFinish.loop   = false;
+    // init parameters
+    this.startLen     = 1.75;
+    this.loopLen      = 5;
+    this.budgetFactor = 0.3;
+  }
+  else if (this._isEquipmentPresent("EQ_HQ_WEAPON_ROTATOR")) {
+    // load sounds
+    this.sndStart         = new SoundSource;
+    this.sndStart.sound   = "weapon-rotator-hq-start.ogg";
+    this.sndStart.loop    = false;
+    this.sndLoop          = new SoundSource;
+    this.sndLoop.sound    = "weapon-rotator-hq-loop.ogg";
+    this.sndLoop.loop     = true;
+    this.sndFinish        = new SoundSource;
+    this.sndFinish.sound  = "weapon-rotator-hq-finish.ogg";
+    this.sndFinish.loop   = false;
+    // init parameters
+    this.startLen     = 0.15;
+    this.loopLen      = 1;
+    this.budgetFactor = 0.1;
+  }
+  else {
     this.sndStart     = null;
     this.sndLoop      = null;
     this.sndFinish    = null;
     this.startLen     = 0;
     this.loopLen      = 0;
     this.budgetFactor = 0;
-  }
-  else {
-    var rotstr = this.installed == 1? "lb" : "hq";
-
-    // load sounds
-    this.sndStart         = new SoundSource;
-    this.sndStart.sound   = "weapon-rotator-"+rotstr+"-start.ogg";
-    this.sndStart.loop    = false;
-    this.sndLoop          = new SoundSource;
-    this.sndLoop.sound    = "weapon-rotator-"+rotstr+"-loop.ogg";
-    this.sndLoop.loop     = true;
-    this.sndFinish        = new SoundSource;
-    this.sndFinish.sound  = "weapon-rotator-"+rotstr+"-finish.ogg";
-    this.sndFinish.loop   = false;
-    // init parameters
-    this.startLen     = this.installed == 1? 1.75 : 0.15;
-    this.loopLen      = this.installed == 1? 5 : 1;
-    this.budgetFactor = this.installed == 1? 0.3 : 0.1;
   }
 }
 
@@ -241,6 +244,14 @@ this._finishRotation = function()
   // quit rotating
   this.rotating = false;
 };
+
+this._isEquipmentPresent = function(eqmnt)
+{
+  var stat = player.ship.equipmentStatus(eqmnt);
+
+  return stat=="EQUIPMENT_OK" || stat=="EQUIPMENT_DAMAGED";
+    // "EQUIPMENT_UNAVAILABLE" "EQUIPMENT_UNKNOWN"
+}
 
 this._calcValueDiminishFactor = function(count)
 {
