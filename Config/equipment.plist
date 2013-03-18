@@ -7,10 +7,10 @@
     <integer>38300</integer>
     <string>Bore &amp; Ratter Weapon Rotator</string>
     <string>EQ_LB_WEAPON_ROTATOR</string>
-    <string>This is famus Bore &amp; Ratter weapon rottator. It weapon clockweise or anticlockweise circles through your front, afft, coreboard and pord weapon mounds. You nedd in combat situation without it. It helps perfactly to stitch betwen your lasers, do ring mining and fighting coombat. Attention: Olweys use originol equibmant.</string>	
+    <string>This is famus Bore &amp; Ratter weapon rottator. It weapon clockweise or anticlockweise circles through your front, afft, coreboard and pord weapon mounds. You nedd in combat situation without it. It helps perfactly to stitch betwen your lasers, do ring mining and fighting coombat. Attention: Olweys use originol equibmant.</string>
     <dict>
-      <key>available_to_all</key>   <true/>
-      <key>script</key>             <string>WeaponRotator-LowBudgetEquipment.js</string>
+      <key>available_to_all</key>     <true/>
+      <key>script</key>               <string>WeaponRotator-LowBudgetEquipment.js</string>
     </dict>
   </array>
   <array>
@@ -18,7 +18,7 @@
     <integer>92500</integer>
     <string>Bore &amp; Ratter Weapon Rotator</string>
     <string>EQ_PROF_WEAPON_ROTATOR</string>
-    <string>This is the famous Bore &amp; Ratter weapon rotator. It circles your weapons clockwise or anticlockwise through your front, aft, storeboard and port weapon mounts. This high precision equipment will help you in combat situations, during mining or all other situations. It ensures that you will always have the weapon of your choice up front.</string>
+    <string>The Bore &amp; Ratter weapon rotator circles your weapons clockwise or anticlockwise through your front, aft, storeboard and port weapon mounts. This high precision equipment will help you in combat situations, during mining or in all other situations. It ensures that you will always have the weapon of your choice up front.</string>
     <dict>
       <key>available_to_all</key>     <true/>
       <key>script</key>               <string>WeaponRotator-ProfessionalEquipment.js</string>
