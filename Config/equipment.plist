@@ -7,7 +7,7 @@
     <integer>38300</integer>
     <string>Bore &amp; Ratter Weapon Rotator</string>
     <string>EQ_LB_WEAPON_ROTATOR</string>
-    <string>This is famus Bore &amp; Ratter weapon rottator. It weapon clockweise or anticlockweise circles through your front, afft, coreboard and pord weapon mounds. You nedd in combat situation without it. It helps perfactly to stitch betwen your lasers, do ring mining and fighting coombat. Attention: Olweys use originol equibmant.</string>
+    <string>This is famus Bore &amp; Ratter weapon rottator. It weapon clockweise or anticlockweise circles through your front, afft, coreboard and pord weapon mounds. You nedd in combat situation without it. It helps perfactly to stitch betwen your lasers, do ring mining and fighting coombat.</string>
     <dict>
       <key>available_to_all</key>     <true/>
       <key>script</key>               <string>WeaponRotator-LowBudgetEquipment.js</string>
