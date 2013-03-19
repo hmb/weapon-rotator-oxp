@@ -43,7 +43,7 @@ While the OXP is still in an early stage of development, the core is already wor
 
 Download
 --------
-https://www.box.com/s/rvayt3gstnjoj3z3yd7q
+https://www.box.com/s/882u5f8sah1uz4rcqm8z
 
 Sourcecode
 ----------
