@@ -85,6 +85,39 @@ this.playerBoughtEquipment = function(equipmentKey)
 }
 
 // --------------------------------------------
+// weapon rotator public member functions
+
+this._getRotationPosition = function()
+{
+  return _rotationPos;
+}
+
+this._rotateToPosition = function(position)
+{
+  if (position<0 || position>3) {
+    return;
+  }
+
+  if (position == _rotationPos) {
+    // we are already at the specified position
+    return;
+  }
+
+  var diff = position - _rotationPos;
+
+  if (diff == -3) {
+    // go one step foreward instead of 3 steps back
+    diff = 1;
+  }
+  else if (diff == 3) {
+    // go one step back instead of 3 steps forward
+    diff = -1;
+  }
+
+  this._rotateWeapons(diff);
+}
+
+// --------------------------------------------
 // weapon rotator private member functions
 
 this._init = function()
