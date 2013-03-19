@@ -83,7 +83,7 @@ Features:
   the malfunction probability of the LB device.
 - Increase the prices and add a bigger gap between both devices. Inexperienced
   pilots won't be able to get the original equipment to early.
-- Use special crosshairs indicationg the rotation direction. The new crosshairs
+- Use special crosshairs indicating the rotation direction. The new crosshairs
   consist of 4 arrows in a row, in either left or right direction.
 
 Bugfixes:
