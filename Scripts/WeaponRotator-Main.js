@@ -15,8 +15,8 @@ this._storablePrefix = "weaponRotator";
 
 // internal variables that should be stored in missionVariables
 this._storables = [
-    { name: "_operationTotal", defaultValue: 0 },
-    { name: "_operationCount", defaultValue: 0 }
+    { name: "_operationTotal",  defaultValue: 0 },    // total number of operations
+    { name: "_operationCount",  defaultValue: 0 },    // operations since last maintenance
   ];
 
 // --------------------------------------------
@@ -41,7 +41,7 @@ this.playerBoughtEquipment = function(equipmentKey)
   var equipment2RemoveKey = null;
 
   if (equipmentKey == "EQ_RENOVATION") {
-    // reset operation counter, the total counter is
+    // reset operation counter, the total is
     // only reset when buying a new EQ
     this._operationCount = 0;
   }
@@ -70,6 +70,7 @@ this.playerBoughtEquipment = function(equipmentKey)
       var totalFactor = this._calcValueDiminishFactor(this._operationTotal);
       totalFactor = (totalFactor-1) * this._budgetFactor + 1;
 
+      // refund remaining credits for existing device
       player.credits +=
         equipment2Remove.price / 10.0 / countFactor / totalFactor / damageFactor;
     }
@@ -144,8 +145,7 @@ this._rotateWeapons = function(clockwise)
   maxHeat = maxHeat > player.ship.laserHeatLevelPort      ? maxHeat : player.ship.laserHeatLevelPort;
   maxHeat = maxHeat > player.ship.laserHeatLevelStarboard ? maxHeat : player.ship.laserHeatLevelStarboard;
 
-  // check temperature of hottest laser ( < 0.25 is green state)
-  // the low budget version needs lower temperature to rotate
+  // check temperature of hottest laser to be below the threshold
   if (maxHeat > this._rotHeatLevel) {
     var msg = "Security override: Laser temperature exceeding rotation specification.";
     player.consoleMessage(msg);
