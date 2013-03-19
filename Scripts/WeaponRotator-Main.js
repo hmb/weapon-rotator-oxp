@@ -8,25 +8,31 @@ this.description    = "This file implements the main functionality of weapon rot
 this.version        = "0.3"
 
 // --------------------------------------------
+// private global properties
+
+// prefix to mission variables
+this.storablePrefix = "weaponRotator_";
+
+// internal variables that should be stored in missionVariables
+this.storables = [
+    { name: "operationTotal", defaultValue: 4711 },
+    { name: "operationCount", defaultValue: 8115 }
+  ];
+
+// --------------------------------------------
 // world script event member functions
 
 this.startUp = function()
 {
-  // init double invocation flag
-  this.rotating = false;
-
-  // load variables that have been saved in the player file
-  this._getMissionVariable("operationTotal", 0);  // total activations
-  this._getMissionVariable("operationCount", 0);  // activations since the last maintenance
-
+  this.rotating = false;    // init double invocation flag
+  this._loadMissionVariables();
   this._init();
 }
 
 this.playerWillSaveGame = function(message)
 {
   // store saveable vars in mission variables
-  this._setMissionVariable("operationTotal");
-  this._setMissionVariable("operationCount");
+  this._saveMissionVariables();
 }
 
 this.playerBoughtEquipment = function(equipmentKey)
@@ -264,13 +270,28 @@ this._finishRotation = function()
 
 this._getMissionVariable = function(varName, defaultValue)
 {
-  var missVar = missionVariables["weaponRotator_"+varName];
+  var missVar = missionVariables[this.storablePrefix + varName];
   this[varName] = missVar==null? defaultValue : missVar;
 }
 
 this._setMissionVariable = function(varName)
 {
-  missionVariables["weaponRotator_"+varName] = this[varName];
+  missionVariables[this.storablePrefix + varName] = this[varName];
+}
+
+this._loadMissionVariables = function()
+{
+  for (var i=0; i<this.storables.length; ++i) {
+    var storeItem = this.storables[i];
+    this._getMissionVariable(storeItem.name, storeItem.defaultValue);
+  }
+}
+
+this._saveMissionVariables = function()
+{
+  for (var i=0; i<this.storables.length; ++i) {
+    this._setMissionVariable(this.storables[i].name);
+  }
 }
 
 this._isEquipmentPresent = function(eqmnt)
