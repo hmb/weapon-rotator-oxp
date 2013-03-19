@@ -15,18 +15,9 @@ this.startUp = function()
   // init double invocation flag
   this.rotating = false;
 
-  // init vars from saved player file
-  // operationTotal is the count of total activations
-  this.operationTotal = missionVariables.weaponRotator_operationTotal;
-  if (this.operationTotal==null) {
-    this.operationTotal = 0;
-  }
-
-  // operationCount is the count of activations since the last maintenance
-  this.operationCount = missionVariables.weaponRotator_operationCount;
-  if (this.operationCount==null) {
-    this.operationCount = 0;
-  }
+  // load variables that have been saved in the player file
+  this._getMissionVariable("operationTotal", 0);  // total activations
+  this._getMissionVariable("operationCount", 0);  // activations since the last maintenance
 
   this._init();
 }
@@ -34,8 +25,8 @@ this.startUp = function()
 this.playerWillSaveGame = function(message)
 {
   // store saveable vars in mission variables
-  missionVariables.weaponRotator_operationTotal = this.operationTotal;
-  missionVariables.weaponRotator_operationCount = this.operationCount;
+  this._setMissionVariable("operationTotal");
+  this._setMissionVariable("operationCount");
 }
 
 this.playerBoughtEquipment = function(equipmentKey)
@@ -84,7 +75,7 @@ this.playerBoughtEquipment = function(equipmentKey)
 }
 
 // --------------------------------------------
-// world script private member functions
+// weapon rotator private member functions
 
 this._init = function()
 {
@@ -264,6 +255,22 @@ this._finishRotation = function()
   // quit rotating
   this.rotating = false;
 };
+
+
+
+// --------------------------------------------
+// general helper functions
+
+this._getMissionVariable = function(varName, defaultValue)
+{
+  var missVar = missionVariables["weaponRotator_"+varName];
+  this[varName] = missVar==null? defaultValue : missVar;
+}
+
+this._setMissionVariable = function(varName)
+{
+  missionVariables["weaponRotator_"+varName] = this[varName];
+}
 
 this._isEquipmentPresent = function(eqmnt)
 {
