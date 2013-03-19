@@ -199,7 +199,6 @@ this._startLoop = function()
 {
   // stop old timer
   this._rotationTimer.stop();
-  delete this._rotationTimer;
   // setup loop timer
   this._rotationTimer = new Timer(this, this._finishRotation, this._loopLen * Math.abs(this._steps));
   // start looping sound
@@ -211,7 +210,7 @@ this._finishRotation = function()
 {
   // stop timer
   this._rotationTimer.stop();
-  delete this._rotationTimer;
+  this._rotationTimer = null;
 
   this._sndLoop.stop();
   this._sndFinish.play();
