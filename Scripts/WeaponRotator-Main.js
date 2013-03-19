@@ -64,7 +64,8 @@ this.playerBoughtEquipment = function(equipmentKey)
       var totalFactor = this._calcValueDiminishFactor(this.operationTotal);
       totalFactor = (totalFactor-1) * this.budgetFactor + 1;
 
-      player.credits += equipment2Remove.price / 10.0 / countFactor / totalFactor / damageFactor;
+      player.credits +=
+        equipment2Remove.price / 10.0 / countFactor / totalFactor / damageFactor;
     }
 
     // new device: reset usage and operation counter
