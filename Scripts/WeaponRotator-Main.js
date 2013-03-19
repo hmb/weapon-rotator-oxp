@@ -134,8 +134,18 @@ this._init = function()
   }
 }
 
-this._rotateWeapons = function(clockwise)
+this._rotateWeapons = function(steps)
 {
+  // check for integer
+  if (steps != Math.floor(steps)) {
+    return;
+  }
+
+  // check parameter steps must be -3, -2, -1, 1, 2, 3
+  if (steps < -3 || steps > 3 || steps==0) {
+    return;
+  }
+
   // avoid double invocation
   if (this._rotating)
     return;
@@ -157,10 +167,10 @@ this._rotateWeapons = function(clockwise)
 
   // start sound and timer
   this._sndStart.play();
-  this._rotationTimer = new Timer(this, this._startLoop, this._startLen)
+  this._rotationTimer = new Timer(this, this._startLoop, this._startLen);
 
   // remember data and weapons
-  this._clockwise = clockwise;
+  this._steps = steps;
   this._forwardWeapon = player.ship.forwardWeapon;
   this._portWeapon = player.ship.portWeapon;
   this._aftWeapon = player.ship.aftWeapon;
@@ -174,7 +184,7 @@ this._rotateWeapons = function(clockwise)
 
   // replace crosshairs with custom version, depending on rotation direction
   this._crosshairs = player.ship.crosshairs;
-  if (clockwise) {
+  if (steps>0) {
     player.ship.crosshairs = "weapon-rotator-xhairs-r.plist";
   }
   else {
@@ -191,7 +201,7 @@ this._startLoop = function()
   this._rotationTimer.stop();
   delete this._rotationTimer;
   // setup loop timer
-  this._rotationTimer = new Timer(this, this._finishRotation, this._loopLen)
+  this._rotationTimer = new Timer(this, this._finishRotation, this._loopLen * Math.abs(this._steps));
   // start looping sound
   this._sndStart.stop();
   this._sndLoop.play();
@@ -206,23 +216,35 @@ this._finishRotation = function()
   this._sndLoop.stop();
   this._sndFinish.play();
 
+  // reduce rotations to the possible 3 rotations
+  var stepSelect = (this._steps + 4) % 4; // normalize to positive integer
+
   // re-fit rotated weapons
-  if (this._clockwise) {
+  switch (stepSelect) {
+  case 1: // one step clockwise
     player.ship.forwardWeapon = this._portWeapon;
     player.ship.portWeapon = this._aftWeapon;
     player.ship.aftWeapon = this._starboardWeapon;
     player.ship.starboardWeapon = this._forwardWeapon;
-    ++this._rotationPos;
-    this._rotationPos %= 4;
-   }
-   else {
+    break;
+
+  case 2: // two steps either direction
+    player.ship.forwardWeapon = this._aftWeapon;
+    player.ship.aftWeapon = this._forwardWeapon;
+    player.ship.portWeapon = this._starboardWeapon;
+    player.ship.starboardWeapon = this._portWeapon;
+    break;
+
+  case 3: // one step anticlockwise
     player.ship.forwardWeapon = this._starboardWeapon;
     player.ship.portWeapon = this._forwardWeapon;
     player.ship.aftWeapon = this._portWeapon;
     player.ship.starboardWeapon = this._aftWeapon;
-    this._rotationPos += 3; // this is -1 mod 4
-    this._rotationPos %= 4;
+    break;
   }
+
+  this._rotationPos += stepSelect;
+  this._rotationPos %= 4;
 
   // forget remembered weapons
   this._forwardWeapon = null;
