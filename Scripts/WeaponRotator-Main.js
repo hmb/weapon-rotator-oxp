@@ -101,7 +101,7 @@ this._init = function()
     this._startLen      = 1.75;
     this._loopLen       = 5;
     this._budgetFactor  = 0.3;
-    this._wpHq          = false;
+    this._rotHeatLevel  = 0.1;
   }
   else if (this._isEquipmentPresent("EQ_HQ_WEAPON_ROTATOR")) {
     // load sounds
@@ -118,7 +118,7 @@ this._init = function()
     this._startLen      = 0.15;
     this._loopLen       = 1;
     this._budgetFactor  = 0.1;
-    this._wpHq          = true;
+    this._rotHeatLevel  = 0.25;
   }
   else {
     this._sndStart      = null;
@@ -127,7 +127,7 @@ this._init = function()
     this._startLen      = 0;
     this._loopLen       = 0;
     this._budgetFactor  = 0;
-    this._wpHq          = false;
+    this._rotHeatLevel  = 0;
   }
 }
 
@@ -146,7 +146,7 @@ this._rotateWeapons = function(clockwise)
 
   // check temperature of hottest laser ( < 0.25 is green state)
   // the low budget version needs lower temperature to rotate
-  if (maxHeat > (this._wpHq? 0.25 : 0.1)) {
+  if (maxHeat > this._rotHeatLevel) {
     var msg = "Security override: Laser temperature exceeding rotation specification.";
     player.consoleMessage(msg);
     this._rotating = false;
