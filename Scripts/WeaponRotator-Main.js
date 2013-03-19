@@ -63,7 +63,8 @@ this.playerBoughtEquipment = function(equipmentKey)
     if (this._isEquipmentPresent(equipment2RemoveKey)) {
       // get the equipment info of the WR to be removed
       var equipment2Remove = EquipmentInfo.infoForKey(equipment2RemoveKey);
-      // remove it then
+      var damageFactor = this._isEquipmentDamaged(equipment2RemoveKey)? 2 : 1;
+      // remove it and refund the remaining value
       player.ship.removeEquipment(equipment2Remove);
       // refund credits according to the operation counter
       // TODO: praxis test, check if this formula is reasonable
@@ -71,7 +72,8 @@ this.playerBoughtEquipment = function(equipmentKey)
       var countFactor = this._calcValueDiminishFactor(this.operationCount);
       var totalFactor = this._calcValueDiminishFactor(this.operationTotal);
       totalFactor = (totalFactor-1) * this.budgetFactor + 1;
-      player.credits += equipment2Remove.price / 10.0 / countFactor / totalFactor;
+
+      player.credits += equipment2Remove.price / 10.0 / countFactor / totalFactor / damageFactor;
     }
 
     // new device: reset usage and operation counter
@@ -269,6 +271,13 @@ this._isEquipmentPresent = function(eqmnt)
 
   return stat=="EQUIPMENT_OK" || stat=="EQUIPMENT_DAMAGED";
     // "EQUIPMENT_UNAVAILABLE" "EQUIPMENT_UNKNOWN"
+}
+
+this._isEquipmentDamaged = function(eqmnt)
+{
+  var stat = player.ship.equipmentStatus(eqmnt);
+
+  return stat=="EQUIPMENT_DAMAGED";
 }
 
 this._calcValueDiminishFactor = function(count)
