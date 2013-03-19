@@ -15,8 +15,8 @@ this._storablePrefix = "weaponRotator";
 
 // internal variables that should be stored in missionVariables
 this._storables = [
-    { name: "_operationTotal", defaultValue: 4711 },
-    { name: "_operationCount", defaultValue: 8115 }
+    { name: "_operationTotal", defaultValue: 0 },
+    { name: "_operationCount", defaultValue: 0 }
   ];
 
 // --------------------------------------------
