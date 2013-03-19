@@ -1,5 +1,5 @@
-Weapon Rotator OXP V 0.1.1
---------------------------
+Weapon Rotator OXP Version 0.2.0
+--------------------------------
 
 Purpose
 -------
@@ -40,12 +40,14 @@ While the OXP is still in an early stage of development, the core is already wor
   (during docking, while scooping, whilst close to the sun...)?
 - different versions of the Weapon Rotator (low-cost, high quality)
 - shielding and Auto-Rotator still have to be implemented.
-- reasonable prices have to be discussed
-- add decent sound files
 
 Download
 --------
 https://www.box.com/s/rvayt3gstnjoj3z3yd7q
+
+Sourcecode
+----------
+https://github.com/hmb/weapon-rotator-oxp
 
 License
 -------
@@ -62,5 +64,43 @@ Thanks to all the people having put this incredible effort into developing oolit
 
 Changelog
 ---------
-2013-03-05 0.1.0 first proof of concept
-2013-03-06 0.1.1 set max required version to 1.78
+
+2013-03-19 0.2.0 Add several new features and some bugfixes.
+
+Features:
+- Add a different damage probability to the LB and HQ version, leading to the
+  LB version getting damaged three times as othen as normal equipment. The HQ
+  version is more stable than normal equipment.
+- Add different sounds for both versions. The sounds are now split into start,
+  loop and ending sound, thus allowing for a variable length of rotation.
+- The description of the lowcost device has been altered to sound like a cheap
+  translation of a non-native speaker, like the descriptions often to be found
+  in cheap imitations of products.
+- Add a different rotation time for both versions of the WR. The HQ device now
+  rotates quite fast, while the LB device drags endlessly.
+- Add an operation counter, remembering the number of invocations. This is
+  currently used in the refund calculation. It will in future also determine
+  the malfunction probability of the LB device.
+- Increase the prices and add a bigger gap between both devices. Inexperienced
+  pilots won't be able to get the original equipment to early.
+- Use special crosshairs indicationg the rotation direction. The new crosshairs
+  consist of 4 arrows in a row, in either left or right direction.
+
+Bugfixes:
+- Fix the check of the equipment presence.
+  Due to a misunderstanding the function EquipmentInfo.infoForKey("EQ_XXX")
+  had been used to determine, whether an equipment is present. This is wrong,
+  it justs reveals, if the equipment is known at all to Oolite. To find out
+  whether it is attached to the ship, we have to use player.ship.equipmentStatus.
+  This created an issue in the playerBoughtEquipment event, leading to an
+  unwanted refund when repairing a damaged WR. It also messed up the
+  initialization process, leading to the wrong equipment being used at startup.
+- Rename custom functions to _XXX. While this is not really a bug it is still
+  best practice and avoids future collisions with new event handlers.
+
+Misc:
+- The code has been added to github: https://github.com/hmb/weapon-rotator-oxp
+
+2013-03-06 0.1.1 Set max required version to 1.78.
+
+2013-03-05 0.1.0 Create the first proof of concept.
