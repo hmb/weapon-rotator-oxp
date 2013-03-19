@@ -17,6 +17,7 @@ this._storablePrefix = "weaponRotator";
 this._storables = [
     { name: "_operationTotal",  defaultValue: 0 },    // total number of operations
     { name: "_operationCount",  defaultValue: 0 },    // operations since last maintenance
+    { name: "_rotationPos",     defaultValue: 0 }     // 0: front, 1: storeboard, 2: aft, 3: port
   ];
 
 // --------------------------------------------
@@ -78,6 +79,7 @@ this.playerBoughtEquipment = function(equipmentKey)
     // new device: reset usage and operation counter
     this._operationTotal = 0;
     this._operationCount = 0;
+    this._rotationPos = 0;
     this._init();
   }
 }
@@ -210,12 +212,16 @@ this._finishRotation = function()
     player.ship.portWeapon = this._aftWeapon;
     player.ship.aftWeapon = this._starboardWeapon;
     player.ship.starboardWeapon = this._forwardWeapon;
+    ++this._rotationPos;
+    this._rotationPos %= 4;
    }
    else {
     player.ship.forwardWeapon = this._starboardWeapon;
     player.ship.portWeapon = this._forwardWeapon;
     player.ship.aftWeapon = this._portWeapon;
     player.ship.starboardWeapon = this._aftWeapon;
+    this._rotationPos += 3; // this is -1 mod 4
+    this._rotationPos %= 4;
   }
 
   // forget remembered weapons
