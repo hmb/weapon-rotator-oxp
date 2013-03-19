@@ -5,7 +5,7 @@ this.author         = "Holger Böhnke"
 this.copyright      = "(C) 20013 Holger Böhnke"
 this.licence        = "Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported"
 this.description    = "This file implements the main functionality of weapon rotator";
-this.version        = "0.2"
+this.version        = "0.3"
 
 // --------------------------------------------
 // world script event member functions
