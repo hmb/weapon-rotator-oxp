@@ -24,9 +24,12 @@ this._storables = [
 
 this.startUp = function()
 {
-  this._rotating = false;    // init double invocation flag
+  // init double invocation flag
+  this._rotating = false;
+  // load existing vars from missionVariables
   worldScripts.WeaponRotatorCommon._loadMissionVariables(this);
-  this._init();
+  // do standard initialization of existing WR
+  this._initExisting();
 }
 
 this.playerWillSaveGame = function(message)
@@ -76,10 +79,7 @@ this.playerBoughtEquipment = function(equipmentKey)
     }
 
     // new device: reset usage and operation counter
-    this._operationTotal = 0;
-    this._operationCount = 0;
-    this._rotationPos = 0;
-    this._init();
+    this._initNew();
   }
 }
 
@@ -154,7 +154,17 @@ this._rotateSteps = function(steps)
 // --------------------------------------------
 // weapon rotator private member functions
 
-this._init = function()
+this._initNew = function()
+{
+  // reset those variables usually stored in the missionVariables
+  this._operationTotal  = 0;
+  this._operationCount  = 0;
+  this._rotationPos     = 0;
+  // do standard initialization of existing WR
+  this._initExisting();
+}
+
+this._initExisting = function()
 {
   if (worldScripts.WeaponRotatorCommon._isEquipmentPresent("EQ_LB_WEAPON_ROTATOR")) {
     // load sounds
