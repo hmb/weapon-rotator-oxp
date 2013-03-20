@@ -260,8 +260,8 @@ this._startLoop = function()
   // setup loop timer
   this._rotationTimer = new Timer(this, this._finishRotation, this._loopLen * Math.abs(this._steps));
   // start looping sound
-  this._sndStart.stop();
   this._sndLoop.play();
+  this._sndStart.stop();
 }
 
 this._finishRotation = function()
@@ -270,8 +270,8 @@ this._finishRotation = function()
   this._rotationTimer.stop();
   this._rotationTimer = null;
 
-  this._sndLoop.stop();
   this._sndFinish.play();
+  this._sndLoop.stop();
 
   // reduce rotations to the possible 3 rotations
   var stepSelect = (this._steps + 4) % 4; // normalize to positive integer
