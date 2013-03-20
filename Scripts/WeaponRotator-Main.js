@@ -8,10 +8,7 @@ this.description    = "This file implements the main functionality of weapon rot
 this.version        = "0.3"
 
 // --------------------------------------------
-// private global properties
-
-// prefix to mission variables
-this._storablePrefix = "weaponRotator";
+// private properties
 
 // internal variables that should be stored in missionVariables
 this._storables = [
@@ -20,20 +17,22 @@ this._storables = [
     { name: "_rotationPos",     defaultValue: 0 }     // 0: front, 1: storeboard, 2: aft, 3: port
   ];
 
+
+
 // --------------------------------------------
 // world script event member functions
 
 this.startUp = function()
 {
   this._rotating = false;    // init double invocation flag
-  this._loadMissionVariables();
+  worldScripts.WeaponRotatorCommon._loadMissionVariables(this);
   this._init();
 }
 
 this.playerWillSaveGame = function(message)
 {
   // store saveable vars in mission variables
-  this._saveMissionVariables();
+  worldScripts.WeaponRotatorCommon._saveMissionVariables(this);
 }
 
 this.playerBoughtEquipment = function(equipmentKey)
@@ -58,17 +57,17 @@ this.playerBoughtEquipment = function(equipmentKey)
   // the remove key is != null, only in case of a new WR being bought
   if (equipment2RemoveKey != null) {
     // check whether the alternative WR is present
-    if (this._isEquipmentPresent(equipment2RemoveKey)) {
+    if (worldScripts.WeaponRotatorCommon._isEquipmentPresent(equipment2RemoveKey)) {
       // get the equipment info of the WR to be removed
       var equipment2Remove = EquipmentInfo.infoForKey(equipment2RemoveKey);
-      var damageFactor = this._isEquipmentDamaged(equipment2RemoveKey)? 2 : 1;
+      var damageFactor = worldScripts.WeaponRotatorCommon._isEquipmentDamaged(equipment2RemoveKey)? 2 : 1;
       // remove it and refund the remaining value
       player.ship.removeEquipment(equipment2Remove);
       // refund credits according to the operation counter
       // TODO: praxis test, check if this formula is reasonable
       // TODO: account for damaged equipment
-      var countFactor = this._calcValueDiminishFactor(this._operationCount);
-      var totalFactor = this._calcValueDiminishFactor(this._operationTotal);
+      var countFactor = worldScripts.WeaponRotatorCommon._calcValueDiminishFactor(this._operationCount);
+      var totalFactor = worldScripts.WeaponRotatorCommon._calcValueDiminishFactor(this._operationTotal);
       totalFactor = (totalFactor-1) * this._budgetFactor + 1;
 
       // refund remaining credits for existing device
@@ -133,7 +132,7 @@ this._rotateToPosition = function(position)
 
 this._init = function()
 {
-  if (this._isEquipmentPresent("EQ_LB_WEAPON_ROTATOR")) {
+  if (worldScripts.WeaponRotatorCommon._isEquipmentPresent("EQ_LB_WEAPON_ROTATOR")) {
     // load sounds
     this._sndStart          = new SoundSource;
     this._sndStart.sound    = "weapon-rotator-lb-start.ogg";
@@ -150,7 +149,7 @@ this._init = function()
     this._budgetFactor  = 0.3;
     this._rotHeatLevel  = 0.1;
   }
-  else if (this._isEquipmentPresent("EQ_HQ_WEAPON_ROTATOR")) {
+  else if (worldScripts.WeaponRotatorCommon._isEquipmentPresent("EQ_HQ_WEAPON_ROTATOR")) {
     // load sounds
     this._sndStart          = new SoundSource;
     this._sndStart.sound    = "weapon-rotator-hq-start.ogg";
@@ -333,56 +332,3 @@ this._finishRotation = function()
   // quit rotating
   this._rotating = false;
 };
-
-
-
-// --------------------------------------------
-// general helper functions
-
-this._getMissionVariable = function(varName, defaultValue)
-{
-  var missVar = missionVariables[this._storablePrefix + varName];
-  this[varName] = missVar==null? defaultValue : missVar;
-}
-
-this._setMissionVariable = function(varName)
-{
-  missionVariables[this._storablePrefix + varName] = this[varName];
-}
-
-this._loadMissionVariables = function()
-{
-  for (var i=0; i<this._storables.length; ++i) {
-    var storeItem = this._storables[i];
-    this._getMissionVariable(storeItem.name, storeItem.defaultValue);
-  }
-}
-
-this._saveMissionVariables = function()
-{
-  for (var i=0; i<this._storables.length; ++i) {
-    this._setMissionVariable(this._storables[i].name);
-  }
-}
-
-this._isEquipmentPresent = function(eqmnt)
-{
-  var stat = player.ship.equipmentStatus(eqmnt);
-
-  return stat=="EQUIPMENT_OK" || stat=="EQUIPMENT_DAMAGED";
-    // "EQUIPMENT_UNAVAILABLE" "EQUIPMENT_UNKNOWN"
-}
-
-this._isEquipmentDamaged = function(eqmnt)
-{
-  var stat = player.ship.equipmentStatus(eqmnt);
-
-  return stat=="EQUIPMENT_DAMAGED";
-}
-
-this._calcValueDiminishFactor = function(count)
-{
-  // ln(count+10) / ln(10) == log10(count+10)
-  var factor = Math.log(count+10) / 2.3025;
-  return factor;
-}
