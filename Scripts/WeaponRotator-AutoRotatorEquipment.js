@@ -10,15 +10,5 @@ this.version        = "0.1"
 this.activated = function()
 {
   worldScripts.WeaponRotatorAutoRotator._storeCurrentPosition();
-  player.consoleMessage("Auto Rotator: position stored");
-}
-
-this.mode = function()
-{
-  if (worldScripts.WeaponRotatorAutoRotator._rotateToStoredPosition()) {
-    player.consoleMessage("Auto Rotator: test run");
-  }
-  else {
-    player.consoleMessage("Auto Rotator: no stored position available");
-  }
+  player.consoleMessage("Auto Rotator: current position stored as emergency position.");
 }

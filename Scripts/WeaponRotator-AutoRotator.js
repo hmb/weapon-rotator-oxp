@@ -48,31 +48,11 @@ this.alertConditionChanged = function(newCondition, oldCondition)
 this._storeCurrentPosition = function()
 {
   this._autoPosition = worldScripts.WeaponRotatorMain._getRotationPosition();
-this._disp();
 }
 
 this._rotateToStoredPosition = function()
 {
-this._disp();
-  if (this._autoPosition == null) {
-    return false;
+  if (this._autoPosition != null) {
+    worldScripts.WeaponRotatorMain._rotateToPosition(this._autoPosition);
   }
-
-  worldScripts.WeaponRotatorMain._rotateToPosition(this._autoPosition);
-  return true;
-}
-
-
-
-// --------------------------------------------
-// private helper functions
-
-this._disp = function()
-{
-  var msg = "";
-
-  msg = "pos: " + worldScripts.WeaponRotatorMain._getRotationPosition()
-    + " -> " + this._autoPosition;
-
-  player.consoleMessage(msg);
 }
