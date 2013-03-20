@@ -43,12 +43,7 @@ this.playerBoughtEquipment = function(equipmentKey)
   // init with nothing to remove
   var equipment2RemoveKey = null;
 
-  if (equipmentKey == "EQ_RENOVATION") {
-    // reset operation counter, the total is
-    // only reset when buying a new EQ
-    this._operationCount = 0;
-  }
-  else if (equipmentKey == "EQ_LB_WEAPON_ROTATOR") {
+  if (equipmentKey == "EQ_LB_WEAPON_ROTATOR") {
     // check if we have to remove the high quality WR
     equipment2RemoveKey = "EQ_HQ_WEAPON_ROTATOR";
   }
@@ -80,6 +75,9 @@ this.playerBoughtEquipment = function(equipmentKey)
 
     // new device: reset usage and operation counter
     this._initNew();
+  }
+  else if (equipmentKey == "EQ_RENOVATION") {
+    this._renovate();
   }
 }
 
@@ -209,6 +207,13 @@ this._initExisting = function()
     this._budgetFactor  = 0;
     this._rotHeatLevel  = 0;
   }
+}
+
+this._renovate = function()
+{
+  // reset the operation counter
+  // the total counter is reset only when buying a new EQ
+  this._operationCount = 0;
 }
 
 this._startRotation = function(steps)
