@@ -1,6 +1,6 @@
 "use strict;"
 
-this.name           = "WeaponRotator-AutoRotatorEquipment"
+this.name           = "WeaponRotatorAutoRotatorEquipment"
 this.author         = "Holger Böhnke"
 this.copyright      = "(C) 2013 Holger Böhnke"
 this.licence        = "Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported"
