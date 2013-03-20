@@ -366,3 +366,26 @@ this._finishRotation = function()
   // quit rotating
   this._rotating = false;
 };
+
+
+
+// --------------------------------------------
+// private helper functions
+
+this._disp = function()
+{
+  var msg = "";
+/*
+this._disp();
+  for (var i=0; i<this._storables.length; ++i) {
+    msg += this._storables[i].name + ": "
+      + this[this._storables[i].name]
+      + " (" + this._storables[i].defaultValue + "), ";
+  }
+
+  msg = storeItem.name + ": " + obj[storeItem.name];
+  msg = "pos: " + this._rotationPos;
+*/
+
+  player.consoleMessage(msg);
+}
