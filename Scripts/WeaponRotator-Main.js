@@ -128,6 +128,7 @@ this._initNew = function()
 this._initExisting = function()
 {
   if (worldScripts.WeaponRotatorCommon._isEquipmentPresent("EQ_LB_WEAPON_ROTATOR")) {
+    this._rotatorKey        = "EQ_LB_WEAPON_ROTATOR";
     // load sounds
     this._sndStart          = new SoundSource;
     this._sndStart.sound    = "weapon-rotator-lb-start.ogg";
@@ -145,6 +146,7 @@ this._initExisting = function()
     this._rotHeatLevel  = 0.1;
   }
   else if (worldScripts.WeaponRotatorCommon._isEquipmentPresent("EQ_HQ_WEAPON_ROTATOR")) {
+    this._rotatorKey        = "EQ_HQ_WEAPON_ROTATOR";
     // load sounds
     this._sndStart          = new SoundSource;
     this._sndStart.sound    = "weapon-rotator-hq-start.ogg";
@@ -162,6 +164,7 @@ this._initExisting = function()
     this._rotHeatLevel  = 0.25;
   }
   else {
+    this._rotatorKey    = "";
     this._sndStart      = null;
     this._sndLoop       = null;
     this._sndFinish     = null;
@@ -214,6 +217,13 @@ this._startRotation = function(steps)
     return;
 
   this._rotating = true;
+
+  // cancel, if damaged. this is for external invocation e.g. from the auto rotator
+  if (worldScripts.WeaponRotatorCommon._isEquipmentDamaged(this._rotatorKey))
+  {
+    this._rotating = false;
+    return;
+  }
 
   var maxHeat = player.ship.laserHeatLevelForward;
   maxHeat = maxHeat > player.ship.laserHeatLevelAft       ? maxHeat : player.ship.laserHeatLevelAft;
