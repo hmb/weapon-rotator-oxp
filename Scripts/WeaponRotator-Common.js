@@ -22,9 +22,6 @@ this._getMissionVariable = function(obj, storeItem)
 {
   var missionVar = missionVariables[this._storablePrefix + storeItem.name];
   obj[storeItem.name] = missionVar==null? storeItem.defaultValue : missionVar;
-
-  var msg = storeItem.name + ": " + obj[storeItem.name];
-  player.consoleMessage(msg);
 }
 
 this._setMissionVariable = function(obj, name)
