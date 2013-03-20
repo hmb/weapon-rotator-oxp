@@ -33,9 +33,13 @@
     <string>EQ_AUTOMATIC_WEAPON_ROTATOR</string>
     <string>This device plugs into your status system and your "Bore &amp; Ratter" weapon rotator. In case of a hostile alert condition, it rotates your weapons automatically to a previously stored combat position.</string>
     <dict>
-      <key>available_to_all</key>     <true/>
-      <key>script</key>               <string>WeaponRotator-AutoRotatorEquipment.js</string>
-      <key>damage_probability</key>   <real>0.25</real>
+      <key>available_to_all</key>         <true/>
+      <key>script</key>                   <string>WeaponRotator-AutoRotatorEquipment.js</string>
+      <key>damage_probability</key>       <real>0.25</real>
+      <key>requires_any_equipment</key>   <array>
+                                            <string>EQ_LB_WEAPON_ROTATOR</string>
+                                            <string>EQ_HQ_WEAPON_ROTATOR</string>
+                                          </array>
     </dict>
   </array>
 <!--
