@@ -214,16 +214,16 @@ this._rotateWeapons = function(steps)
 
   // remember data and weapons
   this._steps = steps;
-  this._forwardWeapon = player.ship.forwardWeapon;
-  this._portWeapon = player.ship.portWeapon;
-  this._aftWeapon = player.ship.aftWeapon;
+  this._forwardWeapon   = player.ship.forwardWeapon;
   this._starboardWeapon = player.ship.starboardWeapon;
+  this._aftWeapon       = player.ship.aftWeapon;
+  this._portWeapon      = player.ship.portWeapon;
 
   // remove weapons, so no fire is possible
-  player.ship.forwardWeapon = null;
-  player.ship.portWeapon = null;
-  player.ship.aftWeapon = null;
+  player.ship.forwardWeapon   = null;
   player.ship.starboardWeapon = null;
+  player.ship.aftWeapon       = null;
+  player.ship.portWeapon      = null;
 
   // replace crosshairs with custom version, depending on rotation direction
   this._crosshairs = player.ship.crosshairs;
@@ -264,24 +264,24 @@ this._finishRotation = function()
   // re-fit rotated weapons
   switch (stepSelect) {
   case 1: // one step clockwise
-    player.ship.forwardWeapon = this._portWeapon;
-    player.ship.portWeapon = this._aftWeapon;
-    player.ship.aftWeapon = this._starboardWeapon;
+    player.ship.forwardWeapon   = this._portWeapon;
     player.ship.starboardWeapon = this._forwardWeapon;
+    player.ship.aftWeapon       = this._starboardWeapon;
+    player.ship.portWeapon      = this._aftWeapon;
     break;
 
   case 2: // two steps either direction
-    player.ship.forwardWeapon = this._aftWeapon;
-    player.ship.aftWeapon = this._forwardWeapon;
-    player.ship.portWeapon = this._starboardWeapon;
+    player.ship.forwardWeapon   = this._aftWeapon;
     player.ship.starboardWeapon = this._portWeapon;
+    player.ship.aftWeapon       = this._forwardWeapon;
+    player.ship.portWeapon      = this._starboardWeapon;
     break;
 
   case 3: // one step anticlockwise
-    player.ship.forwardWeapon = this._starboardWeapon;
-    player.ship.portWeapon = this._forwardWeapon;
-    player.ship.aftWeapon = this._portWeapon;
+    player.ship.forwardWeapon   = this._starboardWeapon;
     player.ship.starboardWeapon = this._aftWeapon;
+    player.ship.aftWeapon       = this._portWeapon;
+    player.ship.portWeapon      = this._forwardWeapon;
     break;
   }
 
@@ -290,9 +290,9 @@ this._finishRotation = function()
 
   // forget remembered weapons
   this._forwardWeapon = null;
-  this._portWeapon = null;
-  this._aftWeapon = null;
   this._starboardWeapon = null;
+  this._aftWeapon = null;
+  this._portWeapon = null;
   // re-install crosshairs
   player.ship.crosshairs = this._crosshairs;
   this._crosshairs = null;
@@ -304,14 +304,14 @@ this._finishRotation = function()
   case "VIEW_FORWARD":
     viewWeapon = player.ship.forwardWeapon;
     break;
+  case "VIEW_STARBOARD":
+    viewWeapon = player.ship.starboardWeapon;
+    break;
   case "VIEW_AFT":
     viewWeapon = player.ship.aftWeapon;
     break;
   case "VIEW_PORT":
     viewWeapon = player.ship.portWeapon;
-    break;
-  case "VIEW_STARBOARD":
-    viewWeapon = player.ship.starboardWeapon;
     break;
   }
 
