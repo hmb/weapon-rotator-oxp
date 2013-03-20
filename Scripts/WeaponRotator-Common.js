@@ -43,7 +43,7 @@ this._saveMissionVariables = function(obj)
   var storables = obj._storables;
 
   for (var i=0; i<storables.length; ++i) {
-    this._setMissionVariable(storables[i].name);
+    this._setMissionVariable(obj, storables[i].name);
   }
 }
 
