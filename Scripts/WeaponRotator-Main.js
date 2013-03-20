@@ -129,9 +129,7 @@ this._rotateSteps = function(steps)
 this._initNew = function()
 {
   // reset those variables usually stored in the missionVariables
-  this._operationTotal  = 0;
-  this._operationCount  = 0;
-  this._rotationPos     = 0;
+  worldScripts.WeaponRotatorCommon._resetMissionVariableDefaults(this);
   // do standard initialization of existing WR
   this._initExisting();
 }

@@ -47,6 +47,15 @@ this._saveMissionVariables = function(obj)
   }
 }
 
+this._resetMissionVariableDefaults = function(obj)
+{
+  var storables = obj._storables;
+
+  for (var i=0; i<storables.length; ++i) {
+    obj[storables[i].name] = storables[i].defaultValue;
+  }
+}
+
 this._isEquipmentPresent = function(eqmnt)
 {
   var stat = player.ship.equipmentStatus(eqmnt);
