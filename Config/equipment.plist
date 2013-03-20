@@ -35,7 +35,7 @@
     <dict>
       <key>available_to_all</key>         <true/>
       <key>script</key>                   <string>WeaponRotator-AutoRotatorEquipment.js</string>
-      <key>damage_probability</key>       <real>0.25</real>
+      <key>damage_probability</key>       <real>1.0</real>
       <key>requires_any_equipment</key>   <array>
                                             <string>EQ_LB_WEAPON_ROTATOR</string>
                                             <string>EQ_HQ_WEAPON_ROTATOR</string>
