@@ -73,7 +73,13 @@ this._isEquipmentDamaged = function(eqmnt)
 
 this._calcValueDiminishFactor = function(count)
 {
-  // ln(count+10) / ln(10) == log10(count+10)
+  // if it is brand new, make sure the factor is exactly 1
+  if (count==0) {
+    return 1;
+  }
+
+  // use: ln(count+10) / ln(10) == log10(count+10)
+  // add 10 to count to make sure the result is > 1
   var factor = Math.log(count+10) / 2.3025;
   return factor;
 }
