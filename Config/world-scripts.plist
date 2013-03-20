@@ -4,5 +4,6 @@
 <array>
   <string>WeaponRotator-Common.js</string>
   <string>WeaponRotator-Main.js</string>
+  <string>WeaponRotator-AutoRotator.js</string>
 </array>
 </plist>

@@ -55,15 +55,6 @@ this.playerBoughtEquipment = function(equipmentKey)
   }
 }
 
-this.alertConditionChanged = function(newCondition, oldCondition)
-{
-  // condition is red and hostile activity detected
-  if (newCondition == 3 && player.alertHostiles)
-  {
-    _engageAutoRotator();
-  }
-}
-
 
 
 // --------------------------------------------

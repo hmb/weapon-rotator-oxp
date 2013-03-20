@@ -26,5 +26,31 @@
       <key>damage_probability</key>   <real>0.75</real>
     </dict>
   </array>
+  <array>
+    <integer>11</integer>
+    <integer>100</integer>
+    <string>Emergency autorotator</string>
+    <string>EQ_AUTOMATIC_WEAPON_ROTATOR</string>
+    <string>This device plugs into your status system and your "Bore &amp; Ratter" weapon rotator. In case of a hostile alert condition, it rotates your weapons automatically to a previously stored combat position.</string>
+    <dict>
+      <key>available_to_all</key>     <true/>
+      <key>script</key>               <string>WeaponRotator-AutoRotatorEquipment.js</string>
+      <key>damage_probability</key>   <real>0.25</real>
+    </dict>
+  </array>
+<!--
+  <array>
+    <integer>11</integer>
+    <integer>100</integer>
+    <string>Weapon Rotator Shielding</string>
+    <string>EQ_SHIELD_WEAPON_ROTATOR</string>
+    <string>This additional shield system protects your "Bore &amp; Ratter" weapon rotator from laser fire.</string>
+    <dict>
+      <key>available_to_all</key>     <true/>
+      <key>script</key>               <string>WeaponRotator-RotatorShieldEquipment.js</string>
+      <key>damage_probability</key>   <real>0.25</real>
+    </dict>
+  </array>
+-->
 </array>
 </plist>
