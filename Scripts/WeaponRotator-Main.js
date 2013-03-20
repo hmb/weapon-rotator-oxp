@@ -40,41 +40,13 @@ this.playerWillSaveGame = function(message)
 
 this.playerBoughtEquipment = function(equipmentKey)
 {
-  // init with nothing to remove
-  var equipment2RemoveKey = null;
-
   if (equipmentKey == "EQ_LB_WEAPON_ROTATOR") {
-    // check if we have to remove the high quality WR
-    equipment2RemoveKey = "EQ_HQ_WEAPON_ROTATOR";
+    // buy it and check if we have to remove the high quality WR
+    this._initBoughtAndCheckRemovalOf("EQ_HQ_WEAPON_ROTATOR");
   }
   else if (equipmentKey == "EQ_HQ_WEAPON_ROTATOR") {
-    // check if we have to remove the low budget WR
-    equipment2RemoveKey = "EQ_LB_WEAPON_ROTATOR";
-  }
-
-  // the remove key is != null, only in case of a new WR being bought
-  if (equipment2RemoveKey != null) {
-    // check whether the alternative WR is present
-    if (worldScripts.WeaponRotatorCommon._isEquipmentPresent(equipment2RemoveKey)) {
-      // get the equipment info of the WR to be removed
-      var equipment2Remove = EquipmentInfo.infoForKey(equipment2RemoveKey);
-      var damageFactor = worldScripts.WeaponRotatorCommon._isEquipmentDamaged(equipment2RemoveKey)? 2 : 1;
-      // remove it and refund the remaining value
-      player.ship.removeEquipment(equipment2Remove);
-      // refund credits according to the operation counter
-      // TODO: praxis test, check if this formula is reasonable
-      // TODO: account for damaged equipment
-      var countFactor = worldScripts.WeaponRotatorCommon._calcValueDiminishFactor(this._operationCount);
-      var totalFactor = worldScripts.WeaponRotatorCommon._calcValueDiminishFactor(this._operationTotal);
-      totalFactor = (totalFactor-1) * this._budgetFactor + 1;
-
-      // refund remaining credits for existing device
-      player.credits +=
-        equipment2Remove.price / 10.0 / countFactor / totalFactor / damageFactor;
-    }
-
-    // new device: reset usage and operation counter
-    this._initNew();
+    // buy it and check if we have to remove the low budget WR
+    this._initBoughtAndCheckRemovalOf("EQ_LB_WEAPON_ROTATOR");
   }
   else if (equipmentKey == "EQ_RENOVATION") {
     this._renovate();
@@ -207,6 +179,34 @@ this._initExisting = function()
     this._budgetFactor  = 0;
     this._rotHeatLevel  = 0;
   }
+}
+
+this._initBoughtAndCheckRemovalOf = function(checkRemovalKey)
+{
+  // check whether an already existing WR is present
+  if (worldScripts.WeaponRotatorCommon._isEquipmentPresent(checkRemovalKey)) {
+    // calculate refund credits according to various factors
+    var equipment2Remove = EquipmentInfo.infoForKey(checkRemovalKey);
+    // the device looses value depending on the number of operations since last maintenance
+    var countFactor = worldScripts.WeaponRotatorCommon._calcValueDiminishFactor(this._operationCount);
+    // the device looses value depending on the total number of operations
+    var totalFactor = worldScripts.WeaponRotatorCommon._calcValueDiminishFactor(this._operationTotal);
+    // but the total loss depends on the quality as well
+    totalFactor = (totalFactor-1) * this._budgetFactor + 1;
+    // of course a possible damage counts as well
+    var damageFactor = worldScripts.WeaponRotatorCommon._isEquipmentDamaged(checkRemovalKey)? 2 : 1;
+
+    // TODO: praxis test, check if this formula is reasonable
+    // now refund remaining credits...
+    player.credits +=
+      equipment2Remove.price / 10.0 / countFactor / totalFactor / damageFactor;
+
+    // ...and then remove the old device
+    player.ship.removeEquipment(equipment2Remove);
+  }
+
+  // the newly bought device has to be initialized
+  this._initNew();
 }
 
 this._renovate = function()
