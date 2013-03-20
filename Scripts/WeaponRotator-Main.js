@@ -20,7 +20,7 @@ this._storables = [
 
 
 // --------------------------------------------
-// world script event member functions
+// world script event handler functions
 
 this.startUp = function()
 {
@@ -104,15 +104,22 @@ this._getRotationPosition = function()
 
 this._rotateToPosition = function(position)
 {
+  // check for integer
+  if (position != Math.floor(position)) {
+    return;
+  }
+
+  // check value
   if (position<0 || position>3) {
     return;
   }
 
+  // are we already at the specified position?
   if (position == _rotationPos) {
-    // we are already at the specified position
     return;
   }
 
+  // calculate the steps to rotate
   var diff = position - _rotationPos;
 
   if (diff == -3) {
@@ -124,8 +131,25 @@ this._rotateToPosition = function(position)
     diff = -1;
   }
 
-  this._rotateWeapons(diff);
+  this._startRotation(diff);
 }
+
+this._rotateSteps = function(steps)
+{
+  // check for integer
+  if (steps != Math.floor(steps)) {
+    return;
+  }
+
+  // steps must be -3, -2, -1, 1, 2, 3
+  if (steps < -3 || steps > 3 || steps==0) {
+    return;
+  }
+
+  this._startRotation(steps);
+}
+
+
 
 // --------------------------------------------
 // weapon rotator private member functions
@@ -177,18 +201,8 @@ this._init = function()
   }
 }
 
-this._rotateWeapons = function(steps)
+this._startRotation = function(steps)
 {
-  // check for integer
-  if (steps != Math.floor(steps)) {
-    return;
-  }
-
-  // check parameter steps must be -3, -2, -1, 1, 2, 3
-  if (steps < -3 || steps > 3 || steps==0) {
-    return;
-  }
-
   // avoid double invocation
   if (this._rotating)
     return;
@@ -234,6 +248,7 @@ this._rotateWeapons = function(steps)
     player.ship.crosshairs = "weapon-rotator-xhairs-l.plist";
   }
 
+  // increase counter when rotation starts
   ++this._operationTotal;
   ++this._operationCount;
 }
