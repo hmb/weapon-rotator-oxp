@@ -238,6 +238,9 @@ this._startRotation = function(steps)
     return;
   }
 
+//  TODO: determine malfunction due to service level and operationCount
+//  player.ship.serviceLevel
+
   // start sound and timer
   this._sndStart.play();
   this._rotationTimer = new Timer(this, this._startLoop, this._startLen);
