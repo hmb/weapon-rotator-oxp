@@ -35,8 +35,7 @@ this.playerWillSaveGame = function(message)
 this.alertConditionChanged = function(newCondition, oldCondition)
 {
   // condition is red and hostile activity detected
-  if (newCondition == 3 && player.alertHostiles)
-  {
+  if (newCondition == 3 && player.alertHostiles) {
     _rotateToStoredPosition();
   }
 }
