@@ -40,16 +40,18 @@ this.playerWillSaveGame = function(message)
 
 this.playerBoughtEquipment = function(equipmentKey)
 {
-  if (equipmentKey == "EQ_LB_WEAPON_ROTATOR") {
-    // buy it and check if we have to remove the high quality WR
+  switch (equipmentKey) {
+  case "EQ_LB_WEAPON_ROTATOR":
     this._initBoughtAndCheckRemovalOf("EQ_HQ_WEAPON_ROTATOR");
-  }
-  else if (equipmentKey == "EQ_HQ_WEAPON_ROTATOR") {
-    // buy it and check if we have to remove the low budget WR
+    break;
+
+  case "EQ_HQ_WEAPON_ROTATOR":
     this._initBoughtAndCheckRemovalOf("EQ_LB_WEAPON_ROTATOR");
-  }
-  else if (equipmentKey == "EQ_RENOVATION") {
+    break;
+
+  case "EQ_RENOVATION":
     this._renovate();
+    break;
   }
 }
 
