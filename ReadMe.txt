@@ -65,6 +65,38 @@ Thanks to all the people having put this incredible effort into developing oolit
 Changelog
 ---------
 
+2013-03-19 0.3.0 Add AutoRotator
+
+Features:
+- The main feature of this new version is the added autorotator. It is sold
+  at a market price of 2890.0 Cr, with a damage probability of 1.0. The
+  autorotator when invoked with 'n', stores the current weapon rotator
+  position. On a red alert it automatically rotates to the stored position.
+- Forbid rotating, if at least one of the lasers is too hot. The LB version
+  needs a temperature below 0.1, HQ below 0.25, which is the green temperature
+  level in the laser temp gauge.
+- Account for a damaged WR in refund, when buying a new device. If the player
+  instead of repairing a damaged device buys the alternative WR the refund is
+  cuts by half.
+
+Changes
+- Reorder the stopping and starting of the sound to avoid a possible gap.
+  The loop sound is now started before the start is stopped. The same way
+  the finish sound is started, before the loop is stopped. This is to avoid
+  a possible gap of silence.
+- Change variable names to start with '_'. While this was already done for
+  functions, it wasn't for variables.
+- Work heavily on restructuring the code to be more readable and better
+  documented.
+
+Bugfixes:
+- Fix the floating point calculation jitter in refund calculation. When the
+  usage count is 0 and the WP is exchanged (HQ<->LB) the full market value is
+  refunded. The calculation function returned something a little less than 1
+  due to floating point rounding errors. This lead to a refund just a little
+  less than the original value when replacing a brand new WR.
+
+
 2013-03-19 0.2.0 Add several new features and some bugfixes.
 
 Features:
@@ -100,6 +132,7 @@ Bugfixes:
 
 Misc:
 - The code has been added to github: https://github.com/hmb/weapon-rotator-oxp
+
 
 2013-03-06 0.1.1 Set max required version to 1.78.
 
