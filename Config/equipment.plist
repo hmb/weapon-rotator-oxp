@@ -2,6 +2,7 @@
 <!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <array>
+
   <array>
     <integer>7</integer>
     <integer>38300</integer>
@@ -14,6 +15,7 @@
       <key>damage_probability</key>   <real>3.0</real>
     </dict>
   </array>
+
   <array>
     <integer>11</integer>
     <integer>92500</integer>
@@ -26,6 +28,7 @@
       <key>damage_probability</key>   <real>0.75</real>
     </dict>
   </array>
+
   <array>
     <integer>11</integer>
     <integer>28900</integer>
@@ -42,6 +45,7 @@
                                           </array>
     </dict>
   </array>
+
 <!--
   <array>
     <integer>11</integer>
@@ -56,5 +60,6 @@
     </dict>
   </array>
 -->
+
 </array>
 </plist>
