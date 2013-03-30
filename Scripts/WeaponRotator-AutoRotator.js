@@ -53,6 +53,6 @@ this._storeCurrentPosition = function()
 this._rotateToStoredPosition = function()
 {
   if (this._autoPosition != null) {
-    worldScripts.WeaponRotatorMain._rotateToPosition(this._autoPosition);
+    worldScripts.WeaponRotatorMain._rotateToPosition(this._autoPosition, true);
   }
 }

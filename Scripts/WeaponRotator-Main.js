@@ -65,7 +65,7 @@ this._getRotationPosition = function()
   return _rotationPos;
 }
 
-this._rotateToPosition = function(position)
+this._rotateToPosition = function(position, auto)
 {
   // check for integer
   if (position != Math.floor(position)) {
@@ -94,10 +94,10 @@ this._rotateToPosition = function(position)
     diff = -1;
   }
 
-  this._startRotation(diff);
+  this._startRotation(diff, auto);
 }
 
-this._rotateSteps = function(steps)
+this._rotateSteps = function(steps, auto)
 {
   // check for integer
   if (steps != Math.floor(steps)) {
@@ -109,7 +109,7 @@ this._rotateSteps = function(steps)
     return;
   }
 
-  this._startRotation(steps);
+  this._startRotation(steps, auto);
 }
 
 
@@ -210,7 +210,7 @@ this._renovate = function()
   this._operationCount = 0;
 }
 
-this._startRotation = function(steps)
+this._startRotation = function(steps, auto)
 {
   // avoid double invocation
   if (this._rotating)
@@ -261,10 +261,12 @@ this._startRotation = function(steps)
   // replace crosshairs with custom version, depending on rotation direction
   this._crosshairs = player.ship.crosshairs;
   if (steps>0) {
-    player.ship.crosshairs = "weapon-rotator-xhairs-r.plist";
+    player.ship.crosshairs =
+      auto? "weapon-rotator-xhairs-ra.plist" : "weapon-rotator-xhairs-r.plist";
   }
   else {
-    player.ship.crosshairs = "weapon-rotator-xhairs-l.plist";
+    player.ship.crosshairs =
+      auto? "weapon-rotator-xhairs-la.plist" : "weapon-rotator-xhairs-l.plist";
   }
 
   // increase counter when rotation starts
