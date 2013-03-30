@@ -1,4 +1,4 @@
-Weapon Rotator OXP Version 0.3.1
+Weapon Rotator OXP Version 0.3.2
 --------------------------------
 
 Purpose
@@ -65,7 +65,7 @@ Thanks to all the people having put this incredible effort into developing oolit
 Changelog
 ---------
 
-2013-03-30 0.3.1 Add AutoRotator
+2013-03-30 0.3.2 Add AutoRotator
 
 Features:
 - The main feature of this new version is the added autorotator. It is sold
