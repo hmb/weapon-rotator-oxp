@@ -77,7 +77,7 @@ Features:
   level in the laser temp gauge.
 - Account for a damaged WR in refund, when buying a new device. If the player
   instead of repairing a damaged device buys the alternative WR the refund is
-  cuts by half.
+  cut by half.
 
 Changes
 - Reorder the stopping and starting of the sound to avoid a possible gap.
