@@ -49,6 +49,11 @@ this.playerBoughtEquipment = function(equipmentKey)
     this._initBoughtAndCheckRemovalOf("EQ_LB_WEAPON_ROTATOR");
     break;
 
+  case "EQ_SHIELD_WEAPON_ROTATOR":
+    player.ship.removeEquipment("EQ_LB_WEAPON_ROTATOR");
+    player.ship.awardEquipment("EQ_LB_WEAPON_ROTATOR_SHD");
+    break;
+
   case "EQ_RENOVATION":
     this._renovate();
     break;

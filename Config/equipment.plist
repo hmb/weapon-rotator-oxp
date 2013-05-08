@@ -10,9 +10,10 @@
     <string>EQ_LB_WEAPON_ROTATOR</string>
     <string>This is famus Bore &amp; Ratter weapon rottator. It weapon clockweise or anticlockweise circles through your front, afft, coreboard and pord weapon mounds. You nedd in combat situation without it. It helps perfactly to stitch betwen your lasers, do ring mining and fighting coombat.</string>
     <dict>
-      <key>available_to_all</key>     <true/>
-      <key>script</key>               <string>WeaponRotator-LowBudgetEquipment.js</string>
-      <key>damage_probability</key>   <real>3.0</real>
+      <key>available_to_all</key>             <true/>
+      <key>script</key>                       <string>WeaponRotator-LowBudgetEquipment.js</string>
+      <key>damage_probability</key>           <real>3.0</real>
+      <key>incompatible_with_equipment</key>  <string>EQ_SHIELD_WEAPON_ROTATOR</string>
     </dict>
   </array>
 
@@ -23,10 +24,11 @@
     <string>EQ_LB_WEAPON_ROTATOR_SHD</string>
     <string>This is famus Bore &amp; Ratter weapon rottator. It weapon clockweise or anticlockweise circles through your front, afft, coreboard and pord weapon mounds. You nedd in combat situation without it. It helps perfactly to stitch betwen your lasers, do ring mining and fighting coombat.</string>
     <dict>
-      <key>available_to_all</key>     <true/>
-      <key>available_to_player</key>  <false/>
-      <key>script</key>               <string>WeaponRotator-LowBudgetEquipment.js</string>
-      <key>damage_probability</key>   <real>0</real>
+      <key>available_to_all</key>             <true/>
+      <key>available_to_player</key>          <true/>
+      <key>script</key>                       <string>WeaponRotator-LowBudgetEquipment.js</string>
+      <key>damage_probability</key>           <real>0</real>
+      <key>requires_equipment</key>           <string>EQ_SHIELD_WEAPON_ROTATOR</string>
     </dict>
   </array>
 
@@ -37,9 +39,10 @@
     <string>EQ_HQ_WEAPON_ROTATOR</string>
     <string>The Bore &amp; Ratter weapon rotator circles your weapons clockwise or anticlockwise through your front, aft, storeboard and port weapon mounts. This high precision equipment will help you in combat situations, during mining or in all other situations. It ensures that you will always have the weapon of your choice up front.</string>
     <dict>
-      <key>available_to_all</key>     <true/>
-      <key>script</key>               <string>WeaponRotator-HighQualityEquipment.js</string>
-      <key>damage_probability</key>   <real>0.75</real>
+      <key>available_to_all</key>             <true/>
+      <key>script</key>                       <string>WeaponRotator-HighQualityEquipment.js</string>
+      <key>damage_probability</key>           <real>0.75</real>
+      <key>incompatible_with_equipment</key>  <string>EQ_SHIELD_WEAPON_ROTATOR</string>
     </dict>
   </array>
 
@@ -50,10 +53,11 @@
     <string>EQ_HQ_WEAPON_ROTATOR_SHD</string>
     <string>The Bore &amp; Ratter weapon rotator circles your weapons clockwise or anticlockwise through your front, aft, storeboard and port weapon mounts. This high precision equipment will help you in combat situations, during mining or in all other situations. It ensures that you will always have the weapon of your choice up front.</string>
     <dict>
-      <key>available_to_all</key>     <true/>
-      <key>available_to_player</key>  <false/>
-      <key>script</key>               <string>WeaponRotator-HighQualityEquipment.js</string>
-      <key>damage_probability</key>   <real>0</real>
+      <key>available_to_all</key>             <true/>
+      <key>available_to_player</key>          <true/>
+      <key>script</key>                       <string>WeaponRotator-HighQualityEquipment.js</string>
+      <key>damage_probability</key>           <real>0</real>
+      <key>requires_equipment</key>           <string>EQ_SHIELD_WEAPON_ROTATOR</string>
     </dict>
   </array>
 
@@ -64,15 +68,15 @@
     <string>EQ_AUTOMATIC_WEAPON_ROTATOR</string>
     <string>This device plugs into your status system and your "Bore &amp; Ratter" weapon rotator. In case of a hostile alert condition, it rotates your weapons automatically to a previously stored combat position.</string>
     <dict>
-      <key>available_to_all</key>         <true/>
-      <key>script</key>                   <string>WeaponRotator-AutoRotatorEquipment.js</string>
-      <key>damage_probability</key>       <real>1.0</real>
-      <key>requires_any_equipment</key>   <array>
-                                            <string>EQ_LB_WEAPON_ROTATOR</string>
-                                            <string>EQ_HQ_WEAPON_ROTATOR</string>
-                                            <string>EQ_LB_WEAPON_ROTATOR_SHD</string>
-                                            <string>EQ_HQ_WEAPON_ROTATOR_SHD</string>
-                                          </array>
+      <key>available_to_all</key>             <true/>
+      <key>script</key>                       <string>WeaponRotator-AutoRotatorEquipment.js</string>
+      <key>damage_probability</key>           <real>1.0</real>
+      <key>requires_any_equipment</key>       <array>
+                                                <string>EQ_LB_WEAPON_ROTATOR</string>
+                                                <string>EQ_HQ_WEAPON_ROTATOR</string>
+                                                <string>EQ_LB_WEAPON_ROTATOR_SHD</string>
+                                                <string>EQ_HQ_WEAPON_ROTATOR_SHD</string>
+                                              </array>
     </dict>
   </array>
 
@@ -83,15 +87,13 @@
     <string>EQ_SHIELD_WEAPON_ROTATOR</string>
     <string>This additional shield system protects your "Bore &amp; Ratter" weapon rotator from outside laser fire.</string>
     <dict>
-      <key>available_to_all</key>         <true/>
-      <key>script</key>                   <string>WeaponRotator-RotatorShieldEquipment.js</string>
-      <key>damage_probability</key>       <real>0.25</real>
-      <key>requires_any_equipment</key>   <array>
-                                            <string>EQ_LB_WEAPON_ROTATOR</string>
-                                            <string>EQ_HQ_WEAPON_ROTATOR</string>
-                                            <string>EQ_LB_WEAPON_ROTATOR_SHD</string>
-                                            <string>EQ_HQ_WEAPON_ROTATOR_SHD</string>
-                                          </array>
+      <key>available_to_all</key>             <true/>
+      <key>script</key>                       <string>WeaponRotator-RotatorShieldEquipment.js</string>
+      <key>damage_probability</key>           <real>0.25</real>
+      <key>requires_any_equipment</key>       <array>
+                                                <string>EQ_LB_WEAPON_ROTATOR</string>
+                                                <string>EQ_HQ_WEAPON_ROTATOR</string>
+                                              </array>
     </dict>
   </array>
 
